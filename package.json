@@ -1,0 +1,22 @@
+{
+  "name": "42-codefi",
+  "version": "1.0.0",
+  "description": "Hosts weekly coding challenges for 42 students",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isaad18/42-codefi.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/isaad18/42-codefi/issues"
+  },
+  "homepage": "https://github.com/isaad18/42-codefi#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
