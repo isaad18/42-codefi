@@ -1,4 +1,4 @@
-# code_challenge
+# 42-codefi
 
 ## Done by:
 ### Imad Saad - Isaad
