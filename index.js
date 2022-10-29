@@ -1,10 +1,13 @@
 const express = require('express');
 const axios = require('axios');
+const { render } = require('ejs');
 const app = express();
 const port = 3000;
 const db = require('./queries');
 const { response } = require('express');
 
+require('dotenv').config();
+app.use(express.static(__dirname + '/assets'));
 app.get('/users', db.getUsers)
 app.get('/users/:username', db.getUserById)
 app.post('/users', db.createUser)
@@ -16,17 +19,39 @@ app.use(express.urlencoded({ extended: true })) // for form data
 
 // Home page
 app.get('/', (req, res) => {
-  res.render('index', {});
+  res.render('index');
+});
+
+app.get('/login', (req, res) => {
+  res.render('login', {authUrl: `https://api.intra.42.fr/oauth/authorize?client_id=${process.env.CLIENT_ID}&redirect_uri=http://localhost:3000/auth&response_type=code`});
+});
+
+app.get('/auth',  async (req, res) => {
+  const result = axios.post("https://api.intra.42.fr/oauth/token",
+   {'grant_type': 'authorization_code',
+    'client_id': process.env.CLIENT_ID,
+    'client_secret': process.env.CLIENT_SECRET,
+    'code': req.query['code'],
+    'redirect_uri': 'http://localhost:3000/auth'
+  }
+  ).then((res) => { 
+      return res.data.access_token;
+    }).catch((err) => console.log(err));
+  const listresult = axios.get("http://localhost:3000/users")
+  .then(response => {
+    return response.data;
+  }).catch(() => null);
+    res.render('home', {accessToken: await result, list: await listresult});
 });
 
 // API tests page
-app.get('/api-test', async (req, res) => {
+app.get('/home', async (req, res) => {
 
   const result = axios.get("http://localhost:3000/users")
   .then(response => {
     return response.data;
   }).catch(() => null);
-  res.render('api-tests/test-list', {loginError: false, list: await result});
+  res.render('home', {loginError: false, list: await result});
 });
 
 // Function that gets a response from the codewars API
