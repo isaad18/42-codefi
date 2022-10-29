@@ -41,8 +41,13 @@ app.get('/auth',  async (req, res) => {
 });
 
 // API tests page
-app.get('/api-test', (req, res) => {
-  res.render('api-tests/test-list', {loginError: false});
+app.get('/api-test', async (req, res) => {
+
+  const result = axios.get("http://localhost:3000/users")
+  .then(response => {
+    return response.data;
+  }).catch(() => null);
+  res.render('api-tests/test-list', {loginError: false, list: await result});
 });
 
 // Function that gets a response from the codewars API
