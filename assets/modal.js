@@ -1,3 +1,15 @@
+
+
+const token = localStorage.getItem('42api-access-token');
+fetch('https://api.intra.42.fr/v2/me', {
+  headers: {
+    Authorization: `Bearer ${token}`
+  }
+})
+  .then(res => res.json())
+  .then(json => {console.log(json.login); console.log("https://profile.intra.42.fr/users/" + json.login); console.log(json.usual_full_name); console.log(json.image_url);});
+
+
 document.addEventListener('DOMContentLoaded', () => {
     // Functions to open and close a modal
     function openModal($el) {

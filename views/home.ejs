@@ -28,6 +28,11 @@
 <body>
 
   <% if (showModal) { %>
+    <% var test =accessToken; %>
+    <script>
+       const accessToken = "<%= test %>"; 
+       localStorage['42api-access-token'] = accessToken;
+    </script>
     <div class="field">
       <label class="label">Input your codewars login here</label>
       <form class="control" action="/set-codewars-login" method="post">
