@@ -27,13 +27,27 @@
 
 <body>
 
-  <% if (showModal) { %>
-    <div class="field">
-      <label class="label">Input your codewars login here</label>
-      <form class="control" action="/set-codewars-login" method="post">
-          <input class="input" type="text" name="codewarsLogin" placeholder="Codewars Login">
-      </form>
-  </div>
+  <% if (user.length == 0) { %>
+    <div id="modal-js-example" class="modal">
+      <div class="modal-background"></div>
+    
+      <div class="modal-content">
+        <div class="box">
+          <div class="field">
+            <label class="label">Input your codewars login here</label>
+            <form class="control" action="/set-codewars-login" method="post">
+                <input class="input" type="text" name="codewarsLogin" placeholder="Codewars Login">
+            </form>
+          </div>
+        </div>
+      </div>
+    
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+    <button style="display:'none'" class="button js-modal-trigger" data-target="modal-js-example"> 
+    </button>
+  <script src="modal.js"></script>
+   
   <% } %>
   <!-- START NAV -->
   <nav class="navbar" role="navigation" aria-label="main navigation">
