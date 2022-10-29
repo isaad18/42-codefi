@@ -42,7 +42,7 @@
   
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item is-size-5">
+        <a class="navbar-item is-size-5" href="#Toptag">
           <strong>Challenge!</strong>
         </a>
   
@@ -52,7 +52,7 @@
           </a>
   
           <div class="navbar-dropdown is-size-5">
-            <a class="navbar-item">
+            <a class="navbar-item" href="#weeklytag">
               Weekly
             </a>
             <a class="navbar-item is-size-5">
@@ -76,14 +76,16 @@
   <!-- END NAV -->
 
   <!-- Image -->
-  <article class="message is-success">
-    <div class="message-body">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>
+  <a name="Toptag"></a>
+  <article class="message is-success is text">
+    <div class="message-body has-text-centered">  
+      Hello 👋 <br>
+       <strong>⚔️⚔️⚔️Challenge your peers⚔️⚔️⚔️</strong>
     </div>
   </article>
   <section class="hero has-text-centered is-size-1 has-background-success-light ">
     <div class="hero-body">
-      <p class="title is-size-1 is-uppercase is-family-primary  ">
+      <p class="title is-size-1 is-capitilized is-family-primary  ">
         Welcome to Codefi-42
       </p>
       <p class="subtitle is-size-4 is-family-primary ">
@@ -93,42 +95,82 @@
 <p id="demo"></p>
 
 <script>
-// Set the date we're counting down to
-var countDownDate = new Date("Oct 29, 2022 22:37:25").getTime();
+var curday;
+var secTime;
+var ticker;
+var flag = 1;
+ 
+function getweek() {
+  var nowDate = new Date();
+  var dy = 6 ; //Sunday through Saturday, 0 to 6
+  var countertime = new Date(nowDate.getFullYear(),nowDate.getMonth(),nowDate.getDate(),24,0,0); //20 out of 24 hours = 8pm
+  
+  var curtime = nowDate.getTime(); //current time
+  var atime = countertime.getTime(); //countdown time
+  var diff = parseInt((atime - curtime)/1000);
+  if (diff > 0) { curday = dy - nowDate.getDay() }
+  else { curday = dy - nowDate.getDay() -1 } //after countdown time
+  if (curday < 0) { curday += 7; } //already after countdown time, switch to next week
+  if (diff <= 0) { diff += (86400 * 7) }
+  startTimer (diff);
+}
 
-// Update the count down every 1 second
-var x = setInterval(function() {
-
-  // Get today's date and time
-  var now = new Date().getTime();
-
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
-
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  // Display the result in the element with id="demo"
-  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
-
-  // If the count down is finished, write some text
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("demo").innerHTML = "Time's Up";
+function gethour() {
+  var nowDate = new Date();
+  var dy = 0; //Sunday through Saturday, 0 to 6
+  var countertime = new Date(nowDate.getFullYear(),nowDate.getMonth(),nowDate.getDate(),0,1,0); //20 out of 24 hours = 8pm
+  
+  var curtime = nowDate.getTime(); //current time
+  var atime = countertime.getTime(); //countdown time
+  var diff = parseInt((atime - curtime)/1000);
+  if (diff > 0) { curday = dy - nowDate.getDay() }
+  else { curday = dy - nowDate.getDay() -1 } //after countdown time
+  if (curday < 0) { curday += 7; } //already after countdown time, switch to next week
+  if (diff <= 0) { diff += (86400 * 7) }
+  startTimer (diff);
+}
+ 
+function startTimer(secs) {
+ secTime = parseInt(secs);
+ ticker = setInterval("tick()",1000);
+ tick(); //initial count display
+}
+ 
+function tick() {
+  var secs = secTime;
+  if (secs>0) {
+    secTime--;
   }
-}, 1000);
+  else {
+    clearInterval(ticker);
+    flag = !flag;
+    if (flag)
+      getweek(); //start over
+    else
+      gethour();
+  }
+  
+  var days = Math.floor(secs/86400);
+  secs %= 86400;
+  var hours= Math.floor(secs/3600);
+  secs %= 3600;
+  var mins = Math.floor(secs/60);
+  secs %= 60;
+ 
+  //update the time display
+  document.getElementById("demo").innerHTML = curday + "d " + hours + "h "
+  + mins + "m " + secs + "s ";
+}
+gethour();
 </script>
 <div class="buttons is-centered">
-    <button class="button is-large is-danger ">Start Challenge!</button>
+    <button class= "button is-large is-danger ">Start Challenge!</button>
   </div>
 <!--  If the count down is finished, write some text ----------------------------------------------------------------------------------->
     </div>
   </section>
-  <section class="section has-text-centered is-centered is-size-4 backg">
+  <section class="section has-text-centered is-centered is-size-4 ">
+    <a name="weeklytag"></a>
     <h1 class="title">Weekly Leadboard</h1>
     <div class="column is-half is-offset-3 mr-6">
       <table class="table is-fullwidth is-centered has-text-left">
@@ -149,33 +191,33 @@ var x = setInterval(function() {
         <tbody>
           <tr>
             <td>
-              <img class="img_round" src="https://budgetstockphoto.com/samples/pics/carspeed.jpg" width="60" height="100">
+              <img class="img_round" src="https://img.freepik.com/free-vector/cute-panda-eating-popcorn-cartoon-icon-illustration-animal-food-icon-concept-isolated-flat-cartoon-style_138676-2562.jpg?w=2000" width="60" height="100">
             </td>
-            <td><a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">Leicester City</a> <strong>(C)</strong>
+            <td><a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="user1">Fkhan</a> <strong>🥇</strong>
             </td>
-            <td>38</td>
+            <td>999</td>
            </tr>
           <tr>
             <td>
-              <img class="img_round" src="https://budgetstockphoto.com/samples/pics/carspeed.jpg" width="60" height="100">
-            </td>            <td><a href="https://en.wikipedia.org/wiki/Arsenal_F.C." title="Arsenal F.C.">Arsenal</a></td>
-            <td>38</td>
+              <img class="img_round" src="https://img.freepik.com/free-vector/cute-panda-eating-popcorn-cartoon-icon-illustration-animal-food-icon-concept-isolated-flat-cartoon-style_138676-2562.jpg?w=2000" width="60" height="100">
+            </td>            <td><a href="https://en.wikipedia.org/wiki/Arsenal_F.C." title="user2">Hadi</a> <strong>🥈</strong></td>
+            <td>420</td>
           </tr>
           <tr>
             <td>
-              <img class="img_round" src="https://budgetstockphoto.com/samples/pics/carspeed.jpg" width="60" height="100">
-            </td>            <td><a href="https://en.wikipedia.org/wiki/Tottenham_Hotspur_F.C." title="Tottenham Hotspur F.C.">Tottenham Hotspur</a></td>
-            <td>38</td>
+              <img class="img_round" src="https://img.freepik.com/free-vector/cute-panda-eating-popcorn-cartoon-icon-illustration-animal-food-icon-concept-isolated-flat-cartoon-style_138676-2562.jpg?w=2000" width="60" height="100">
+            </td>            <td><a href="https://en.wikipedia.org/wiki/Tottenham_Hotspur_F.C." title="user3">Asd</a><strong>🥉</strong></td>
+            <td>2</td>
           </tr>
           <tr>
             <td>
-              <img class="img_round" src="https://budgetstockphoto.com/samples/pics/carspeed.jpg" width="60" height="100">
+              <img class="img_round" src="https://img.freepik.com/free-vector/cute-panda-eating-popcorn-cartoon-icon-illustration-animal-food-icon-concept-isolated-flat-cartoon-style_138676-2562.jpg?w=2000" width="60" height="100">
             </td>            <td><a href="https://en.wikipedia.org/wiki/Manchester_City_F.C." title="Manchester City F.C.">Manchester City</a></td>
             <td>38</td>
           </tr>
           <tr>
             <td>
-              <img class="img_round" src="https://budgetstockphoto.com/samples/pics/carspeed.jpg" width="60" height="100">
+              <img class="img_round" src="https://img.freepik.com/free-vector/cute-panda-eating-popcorn-cartoon-icon-illustration-animal-food-icon-concept-isolated-flat-cartoon-style_138676-2562.jpg?w=2000" width="60" height="100">
             </td>
                 <td><a href="https://en.wikipedia.org/wiki/Manchester_United_F.C." title="Manchester United F.C.">Manchester United</a></td>
             <td>38</td>
@@ -185,51 +227,17 @@ var x = setInterval(function() {
     </div>
 
 
-
-
-
-  <!-- newsletter -->
-  <section class="section">
-    <div class="columns">
-      <div class="column is-10 is-offset-1">
-        <div class="container has-text-centered is-fluid">
-          <div class="hero is-light">
-            <div class="hero-body">
-              <h2 class="title is-4">Sign up for our newsletter</h2>
-                <div class="column is-6 is-offset-3">
-                  <div class="field has-addons has-addons-centered">
-                    <div class="control is-expanded">
-                      <input class="input " type="text" placeholder="Email address">
-                    </div>
-                    <div class="control">
-                      <a class="button is-info">
-                        Subscribe
-                      </a>
-                    </div>
-                  </div>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-        <div class="is-divider"></div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="content has-text-centered">
+  <footer class="footer has-background-success-light">
+    <div class="content has-text-centered ">
       <p>
-        <strong>Coding challenge website for 42 students</strong> by <a href="">Isaad, Mfirdous, Hsharhan, Sali</a>. Based on the <a
+        <strong>Coding challenge website for 42 students</strong> by <a href="">Isaad, Mfirdous, Hsarhan, Sali</a>. Based on <a
           href="">Code Wars</a>. The source code is licensed
         <a href="http://opensource.org/licenses/mit-license.php">MIT</a>
       </p>
     </div>
   </footer>
 
-  <script
+  <script>
     document.addEventListener('DOMContentLoaded', () => {
 
       // Get all "navbar-burger" elements
@@ -256,7 +264,6 @@ var x = setInterval(function() {
 
     });
   </script>
-
 </body>
 
 </html>
