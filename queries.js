@@ -13,7 +13,7 @@ const getUsers = (request, response) => {
 	  if (error) {
 		throw error
 	  }
-	  response.status(200).json(results.rows)
+	response.status(200).json(results.rows)
 	})
 }
 
@@ -25,7 +25,7 @@ const getUserById = (request, response) => {
 		throw error
 	}
 	response.status(200).json(results.rows)
-	})
+})
 }
 
 const createUser = (request, response) => {
@@ -62,6 +62,15 @@ const deleteUser = (request, response) => {
 		throw error
 		}
 		response.status(200).send(`User deleted with ID: ${id}`)
+	})
+}
+
+const getTopFiveUsers = (request, response) => {
+	pool.query('SELECT * FROM users ORDER BY score DESC limit 5', (error, results) => {
+	  if (error) {
+		throw error
+	  }
+	  response.status(200).json(results.rows)
 	})
 }
 

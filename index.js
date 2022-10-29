@@ -2,7 +2,8 @@ const express = require('express');
 const axios = require('axios');
 const app = express();
 const port = 3000;
-const db = require('./queries')
+const db = require('./queries');
+const { response } = require('express');
 
 app.get('/users', db.getUsers)
 app.get('/users/:username', db.getUserById)
@@ -15,12 +16,17 @@ app.use(express.urlencoded({ extended: true })) // for form data
 
 // Home page
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', {});
 });
 
 // API tests page
-app.get('/api-test', (req, res) => {
-  res.render('api-tests/test-list', {loginError: false});
+app.get('/api-test', async (req, res) => {
+
+  const result = axios.get("http://localhost:3000/users")
+  .then(response => {
+    return response.data;
+  }).catch(() => null);
+  res.render('api-tests/test-list', {loginError: false, list: await result});
 });
 
 // Function that gets a response from the codewars API
@@ -48,7 +54,7 @@ app.post('/challenge-info', async (req, res) => {
   const response = await getChallengeInfo(req.body.challengeName);
   // We are interested in name, URL, category, description
   res.render('api-tests/challenge-info', {...response, challengeNotFound: !response});
-});
+}); 
 
 // Post request to check that a given challenge has been completed by a user
 app.post('/has-completed', async (req, res) => {

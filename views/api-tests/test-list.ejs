@@ -24,7 +24,7 @@
 				<p style="color: red;">Incorrect login</p>
 			<% } %>
 		</form>
-	  </div>
+	</div>
 	<div class="field">
 		<label class="label">Get Challenge Info</label>
 		<form class="control" action="/challenge-info" method="post">
@@ -32,7 +32,21 @@
 				<input class="input" type="text" name="challengeName" placeholder="Challenge Name">
 			<input type="submit" />
 		</form>
-	  </div>
+	</div>
+	<b>Leaderboard</b>
+	<table style="width:100%">
+		<tr>
+		  <th>Username</th>
+		  <th>Name</th>
+		  <th>Score</th>
+		<% for (var i = 0; i < list.length;  i++) { %>
+			<tr>
+			  <td><%= list[i].username %></td>
+			  <td><%= list[i].name %></td>
+			  <td><%= list[i].score %></td>
+			</tr>    
+		<% } %>
+	</table>
 	  
 </body>
 </html>
