@@ -1,8 +1,11 @@
 const express = require('express');
 const axios = require('axios');
+const { render } = require('ejs');
 const app = express();
 const port = 3000;
 
+require('dotenv').config();
+app.use(express.static(__dirname + '/assets'));
 app.set('view engine', 'ejs');
 app.use(express.json()) // for json
 app.use(express.urlencoded({ extended: true })) // for form data
@@ -10,6 +13,25 @@ app.use(express.urlencoded({ extended: true })) // for form data
 // Home page
 app.get('/', (req, res) => {
   res.render('index');
+});
+
+app.get('/login', (req, res) => {
+  res.render('login', {authUrl: `https://api.intra.42.fr/oauth/authorize?client_id=${process.env.CLIENT_ID}&redirect_uri=http://localhost:3000/auth&response_type=code`});
+});
+
+app.get('/auth',  async (req, res) => {
+  const result = axios.post("https://api.intra.42.fr/oauth/token",
+   {'grant_type': 'authorization_code',
+    'client_id': process.env.CLIENT_ID,
+    'client_secret': process.env.CLIENT_SECRET,
+    'code': req.query['code'],
+    'redirect_uri': 'http://localhost:3000/auth'
+  }
+  ).then((res) => { 
+      return res.data.access_token;
+    }).catch((err) => console.log(err));
+    
+    res.render('after-login', {accessToken: await result});
 });
 
 // API tests page
