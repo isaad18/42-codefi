@@ -36,18 +36,21 @@ app.get('/auth',  async (req, res) => {
   ).then((res) => { 
       return res.data.access_token;
     }).catch((err) => console.log(err));
-    
-    res.render('after-login', {accessToken: await result});
+  const listresult = axios.get("http://localhost:3000/users")
+  .then(response => {
+    return response.data;
+  }).catch(() => null);
+    res.render('home', {accessToken: await result, list: await listresult});
 });
 
 // API tests page
-app.get('/api-test', async (req, res) => {
+app.get('/home', async (req, res) => {
 
   const result = axios.get("http://localhost:3000/users")
   .then(response => {
     return response.data;
   }).catch(() => null);
-  res.render('api-tests/test-list', {loginError: false, list: await result});
+  res.render('home', {loginError: false, list: await result});
 });
 
 // Function that gets a response from the codewars API
