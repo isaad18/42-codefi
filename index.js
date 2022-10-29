@@ -40,8 +40,14 @@ app.get('/auth',  async (req, res) => {
   .then(response => {
     return response.data;
   }).catch(() => null);
-    res.render('home', {accessToken: await result, list: await listresult});
+    res.render('home', {accessToken: await result, list: await listresult, showModal: true});
 });
+
+app.post('/set-codewars-login', (req, res) => {
+  console.log(req.body.codewarsLogin);
+  // res.render('home', {});
+});
+
 
 // API tests page
 app.get('/home', async (req, res) => {

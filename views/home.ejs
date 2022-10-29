@@ -26,6 +26,15 @@
 </head>
 
 <body>
+
+  <% if (showModal) { %>
+    <div class="field">
+      <label class="label">Input your codewars login here</label>
+      <form class="control" action="/set-codewars-login" method="post">
+          <input class="input" type="text" name="codewarsLogin" placeholder="Codewars Login">
+      </form>
+  </div>
+  <% } %>
   <!-- START NAV -->
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
