@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<title>Document</title>
+</head>
+<body>
+	<div class="field">
+		<label class="label">Check if a challenge has been completed</label>
+		<form class="control" action="/has-completed" method="post">
+			<p>Example login: MehrinFirdousi</p>
+			<p>Example challenge: multiply || classic-hello-world</p>
+			<%if (loginError) { %>
+				<input class="input" type="text" name="name" placeholder="Incorrect login">
+			<% } else { %>
+				<input class="input" type="text" name="name" placeholder="Codewars login">
+			<% } %>
+			<input class="input" type="text" name="challenge" placeholder="exercise name">
+			<input type="submit" />
+			<%if (loginError) { %>
+				<p style="color: red;">Incorrect login</p>
+			<% } %>
+		</form>
+	  </div>
+	<div class="field">
+		<label class="label">Get Challenge Info</label>
+		<form class="control" action="/challenge-info" method="post">
+			<p>Example challenge: valid-braces</p>
+				<input class="input" type="text" name="challengeName" placeholder="Challenge Name">
+			<input type="submit" />
+		</form>
+	  </div>
+	  
+</body>
+</html>
