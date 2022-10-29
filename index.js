@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 app.use(express.static(__dirname + '/assets'));
 app.get('/', (req, res) => {
-  res.sendFile('index.html', {root: __dirname + "/"});
+  res.sendFile('home.html', {root: __dirname + "/"});
 });
 
 app.listen(port, () => {

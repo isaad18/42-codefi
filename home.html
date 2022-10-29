@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Blog - Tailsaw </title>
+  <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.3/css/bulma.min.css" />
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/bulma-divider.min.css">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+  	body {font-family: 'Nunito', sans-serif;};
+    nav.navbar {
+      height: 6rem !important;
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .06) !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- START NAV -->
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="">
+        <img src="Codefi.png" width="100" height="100">
+      </a>
+  
+      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+  
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item is-size-5">
+          <strong>Challenge!</strong>
+        </a>
+  
+        <div class="navbar-item has-dropdown is-hoverable is-size-5">
+          <a class="navbar-link">
+            <strong>Leadboards</strong>
+          </a>
+  
+          <div class="navbar-dropdown is-size-5">
+            <a class="navbar-item">
+              Weekly
+            </a>
+            <a class="navbar-item is-size-5">
+              All time
+            </a>
+          </div>
+        </div>
+      </div>
+  
+      <div class="navbar-end">
+        <div class="navbar-item is-fullwidth">
+          <div class="buttons">
+            <a class="button is-primary button is-medium is-fullwidth">
+              <strong> Logout </strong>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <!-- END NAV -->
+
+  <!-- Image -->
+  <article class="message is-success">
+    <div class="message-body">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>
+    </div>
+  </article>
+  <section class="hero has-text-centered is-size-1 has-background-success-light ">
+    <div class="hero-body">
+      <p class="title is-size-1 is-uppercase is-family-primary  ">
+        Welcome to Codify-42
+      </p>
+      <p class="subtitle is-size-4 is-family-primary ">
+        Sharpen your interview skills or just challenge your friends
+      </p>
+      <!-- Display the countdown timer in an element -------------------------------------------------------------------------------------------->
+<p id="demo"></p>
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("Oct 29, 2022 22:37:25").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get today's date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "Time's Up";
+  }
+}, 1000);
+</script>
+<div class="buttons is-centered">
+    <button class="button is-large is-danger ">Start Challenge!</button>
+  </div>
+<!--  If the count down is finished, write some text ----------------------------------------------------------------------------------->
+    </div>
+  </section>
+  <section class="section has-text-centered is-centered is-size-4 backg">
+    <h1 class="title">Weekly Leadboard</h1>
+    <div class="column is-half is-offset-3 mr-6">
+      <table class="table is-fullwidth is-centered has-text-centered">
+        <thead>
+          <tr>
+            <th><abbr title="Position">Pos</abbr></th>
+            <th><abbr title="Name">Intra  Name</abbr></th>
+            <th><abbr title="Time">Time</abbr></th>
+          </tr>
+        </thead>
+        <tfoot>
+          <tr>
+            <th><abbr title="Position">Pos</abbr></th>
+            <th><abbr title="Name">Name</abbr></th>
+            <th><abbr title="Time">Time</abbr></th>
+          </tr>
+        </tfoot>
+        <tbody>
+          <tr>
+            <th>1</th>
+            <td><a href="https://en.wikipedia.org/wiki/Leicester_City_F.C." title="Leicester City F.C.">Leicester City</a> <strong>(C)</strong>
+            </td>
+            <td>38</td>
+           </tr>
+          <tr>
+            <th>2</th>
+            <td><a href="https://en.wikipedia.org/wiki/Arsenal_F.C." title="Arsenal F.C.">Arsenal</a></td>
+            <td>38</td>
+          </tr>
+          <tr>
+            <th>3</th>
+            <td><a href="https://en.wikipedia.org/wiki/Tottenham_Hotspur_F.C." title="Tottenham Hotspur F.C.">Tottenham Hotspur</a></td>
+            <td>38</td>
+          </tr>
+          <tr>
+            <th>4</th>
+            <td><a href="https://en.wikipedia.org/wiki/Manchester_City_F.C." title="Manchester City F.C.">Manchester City</a></td>
+            <td>38</td>
+          </tr>
+          <tr>
+            <th>5</th>
+            <td><a href="https://en.wikipedia.org/wiki/Manchester_United_F.C." title="Manchester United F.C.">Manchester United</a></td>
+            <td>38</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+
+  <!-- newsletter -->
+  <section class="section">
+    <div class="columns">
+      <div class="column is-10 is-offset-1">
+        <div class="container has-text-centered is-fluid">
+          <div class="hero is-light">
+            <div class="hero-body">
+              <h2 class="title is-4">Sign up for our newsletter</h2>
+                <div class="column is-6 is-offset-3">
+                  <div class="field has-addons has-addons-centered">
+                    <div class="control is-expanded">
+                      <input class="input " type="text" placeholder="Email address">
+                    </div>
+                    <div class="control">
+                      <a class="button is-info">
+                        Subscribe
+                      </a>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+        <div class="is-divider"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>Coding challenge website for 42 students</strong> by <a href="">Isaad, Mfirdous, Hsharhan, Sali</a>. Based on the <a
+          href="">Code Wars</a>. The source code is licensed
+        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>
+      </p>
+    </div>
+  </footer>
+
+  <script
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // Get all "navbar-burger" elements
+      const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+
+      // Check if there are any navbar burgers
+      if ($navbarBurgers.length > 0) {
+
+        // Add a click event on each of them
+        $navbarBurgers.forEach(el => {
+          el.addEventListener('click', () => {
+
+            // Get the target from the "data-target" attribute
+            const target = el.dataset.target;
+            const $target = document.getElementById(target);
+
+            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+            el.classList.toggle('is-active');
+            $target.classList.toggle('is-active');
+
+          });
+        });
+      }
+
+    });
+  </script>
+
+</body>
+
+</html>
