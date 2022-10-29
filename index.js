@@ -2,7 +2,13 @@ const express = require('express');
 const axios = require('axios');
 const app = express();
 const port = 3000;
+const db = require('./queries')
 
+app.get('/users', db.getUsers)
+app.get('/users/:username', db.getUserById)
+app.post('/users', db.createUser)
+app.put('/users/:username', db.updateUser)
+app.delete('/users/:username', db.deleteUser)
 app.set('view engine', 'ejs');
 app.use(express.json()) // for json
 app.use(express.urlencoded({ extended: true })) // for form data
