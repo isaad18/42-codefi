@@ -34,6 +34,8 @@ To run the code challenge... ->
 ```
 npm install
 ```
+
+then ->
 ```
 npm start
 ```
