@@ -12,17 +12,25 @@
 		<label class="label">Check if a challenge has been completed</label>
 		<form class="control" action="/has-completed" method="post">
 			<p>Example login: MehrinFirdousi</p>
-			<p>Example problem: multiply || classic-hello-world</p>
-			<%if (error) { %>
+			<p>Example challenge: multiply || classic-hello-world</p>
+			<%if (loginError) { %>
 				<input class="input" type="text" name="name" placeholder="Incorrect login">
 			<% } else { %>
 				<input class="input" type="text" name="name" placeholder="Codewars login">
 			<% } %>
-			<input class="input" type="text" name="exercise" placeholder="exercise name">
+			<input class="input" type="text" name="challenge" placeholder="exercise name">
 			<input type="submit" />
-			<%if (error) { %>
+			<%if (loginError) { %>
 				<p style="color: red;">Incorrect login</p>
 			<% } %>
+		</form>
+	  </div>
+	<div class="field">
+		<label class="label">Get Challenge Info</label>
+		<form class="control" action="/challenge-info" method="post">
+			<p>Example challenge: valid-braces</p>
+				<input class="input" type="text" name="challengeName" placeholder="Challenge Name">
+			<input type="submit" />
 		</form>
 	  </div>
 	  
