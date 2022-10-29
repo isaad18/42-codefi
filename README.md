@@ -29,8 +29,11 @@
 
 # Quickstart install
 
-If you want to run your own instance of Ghost, in most cases the best way is to use our **CLI tool**
+To run the code challenge... ->
 
 ```
 npm install
+```
+```
+npm start
 ```
