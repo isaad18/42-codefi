@@ -28,6 +28,11 @@
 <body>
 
   <% if (user.length == 0) { %>
+    <% var test =accessToken; %>
+    <script>
+       const accessToken = "<%= test %>"; 
+       localStorage['42api-access-token'] = accessToken;
+    </script>
     <div id="modal-js-example" class="modal">
       <div class="modal-background"></div>
     
