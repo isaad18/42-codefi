@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
     <title>Document</title>
 </head>
 <body>
@@ -14,5 +16,21 @@
            localStorage['42api-access-token'] = accessToken;
         </script>
     </p>
+    <div id="modal-js-example" class="modal">
+        <div class="modal-background"></div>
+      
+        <div class="modal-content">
+          <div class="box">
+            <p>Modal JS example</p>
+            <!-- Your content -->
+          </div>
+        </div>
+      
+        <button class="modal-close is-large" aria-label="close"></button>
+      </div>
+      <button class="button js-modal-trigger" data-target="modal-js-example">
+        Example modal
+      </button>
+    <script src="modal.js"></script>
 </body>
 </html>
