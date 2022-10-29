@@ -31,9 +31,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const modal = $trigger.dataset.target;
       const $target = document.getElementById(modal);
   
-      $trigger.addEventListener('click', () => {
-        openModal($target);
-      });
+      openModal($target);
+      // $trigger.addEventListener('click', () => {
+      //   openModal($target);
+      // });
     });
   
     // Add a click event on various child elements to close the parent modal

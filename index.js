@@ -4,6 +4,7 @@ const { render } = require('ejs');
 const app = express();
 const port = 3000;
 const db = require('./queries')
+const testuser = "mfirdou"
 
 require('dotenv').config();
 app.use(express.static(__dirname + '/assets'));
@@ -36,11 +37,18 @@ app.get('/auth',  async (req, res) => {
   ).then((res) => { 
       return res.data.access_token;
     }).catch((err) => console.log(err));
+  
   const listresult = axios.get("http://localhost:3000/users")
   .then(response => {
     return response.data;
   }).catch(() => null);
-    res.render('home', {accessToken: await result, list: await listresult, showModal: true});
+
+  const userRecord = axios.get("http://localhost:3000/users/" + testuser)
+  .then(response => {
+    return response.data;
+  }).catch(() => null);
+  
+  res.render('home', {accessToken: await result, list: await listresult, user: await userRecord});
 });
 
 app.post('/set-codewars-login', (req, res) => {
@@ -120,5 +128,5 @@ app.post('/has-completed', async (req, res) => {
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
-  console.log(`API tests on http://localhost:${port}/api-test`);
+  console.log(`API tests on http://localhost:${port}/login`);
 });
