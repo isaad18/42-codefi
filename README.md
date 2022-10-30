@@ -27,7 +27,7 @@
 
 &nbsp;
 
-# Quickstart install
+## Quickstart install
 
 To run the code challenge... ->
 
