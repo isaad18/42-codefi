@@ -23,7 +23,7 @@
 ### Saim Ali - Sali
 
 ## Description
-#### To make the students engage more with the events at 42 AD, We decided to make a weekly challenge for one hour solving CodeWars questions, whoever finishes first wins the competition for the week and will get extra points that will be stored to update a leaderboard that can be shown on a website with the intra names.
+#### To make the students engage more with the events at 42 AD, we decided to make a weekly challenge for one hour solving CodeWars questions, whoever finishes first wins the competition for the week and will get extra points that will be stored to update a leaderboard that can be shown on a website with the intra names.
 
 &nbsp;
 
