@@ -40,7 +40,7 @@ then ->
 npm start
 ```
 
-#Quick describtion
+## Quick describtion
 
 ``
 First, login through our page through authorising your 42 account from here
