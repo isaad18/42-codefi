@@ -49,3 +49,13 @@ First, login through our page through authorising your 42 account from here
 
 <img width="1680" alt="Screenshot 2022-10-30 at 11 33 16" src="https://user-images.githubusercontent.com/96569765/198867826-a80f02c5-9eb3-45c1-a7b7-0e97c7e0935f.png">
 
+
+
+``
+and then authorise here
+``
+
+<img width="1680" alt="Screenshot 2022-10-30 at 11 36 18" src="https://user-images.githubusercontent.com/96569765/198867903-54278629-b6d1-47b4-b673-fd1c94ad4e00.png">
+
+
+
