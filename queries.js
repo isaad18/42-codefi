@@ -29,9 +29,9 @@ const getUserById = (request, response) => {
 }
 
 const createUser = (request, response) => {
-	const { username, pic_url } = request.body
-
-	pool.query('INSERT INTO users (username, pic_url) VALUES ($1, $2) RETURNING *', [username, pic_url], (error, results) => {
+	const { username, profile_url, name, pic_url } = request.body
+	
+	pool.query('INSERT INTO users (username, profile_url, name, pic_url) VALUES ($1, $2, $3, $4) RETURNING *', [username, profile_url, name, pic_url], (error, results) => {
 	if (error) {
 		throw error
 	}
@@ -65,10 +65,22 @@ const deleteUser = (request, response) => {
 	})
 }
 
+const createUserCodewars = (request, response) => {
+	const { username, codewarsid } = request.body
+	
+	pool.query('INSERT INTO users (username, codewarsid) VALUES ($1, $2) RETURNING *', [username, codewarsid], (error, results) => {
+	if (error) {
+		throw error
+	}
+	response.status(201).send(`Codewars ID added with username: ${results.rows[0].username}`)
+	})
+}
+
 module.exports = {
 	getUsers,
 	getUserById,
 	createUser,
 	updateUser,
 	deleteUser,
+	createUserCodewars
 }

@@ -27,7 +27,7 @@
 
 <body>
 
-  <% if (user.length == 0) { %>
+  <% if ( showModal) { %>
     <% var test =accessToken; %>
     <script>
        const accessToken = "<%= test %>"; 
@@ -41,7 +41,8 @@
           <div class="field">
             <label class="label">Input your codewars login here</label>
             <form class="control" action="/set-codewars-login" method="post">
-                <input class="input" type="text" name="codewarsLogin" placeholder="Codewars Login">
+                <input class="input" type="text" id="codewars_login" name="codewarsLogin" placeholder="Codewars Login">
+                <input id="codewars_submit" type="submit" />
             </form>
           </div>
         </div>
@@ -49,7 +50,7 @@
     
       <button class="modal-close is-large" aria-label="close"></button>
     </div>
-    <button style="display:'none'" class="button js-modal-trigger" data-target="modal-js-example"> 
+    <button style="display: none" class="button js-modal-trigger" data-target="modal-js-example"> 
     </button>
   <script src="modal.js"></script>
    
@@ -70,7 +71,7 @@
   
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item is-size-5">
+        <a class="navbar-item is-size-5" href="#Toptag">
           <strong>Challenge!</strong>
         </a>
   
@@ -80,7 +81,7 @@
           </a>
   
           <div class="navbar-dropdown is-size-5">
-            <a class="navbar-item">
+            <a class="navbar-item" href="#weeklytag">
               Weekly
             </a>
             <a class="navbar-item is-size-5">
@@ -93,7 +94,7 @@
       <div class="navbar-end">
         <div class="navbar-item is-fullwidth">
           <div class="buttons">
-            <a class="button is-primary button is-medium is-fullwidth">
+            <a href="http://localhost:3000/login" class="button is-primary button is-medium is-fullwidth">
               <strong> Logout </strong>
             </a>
           </div>
@@ -104,14 +105,16 @@
   <!-- END NAV -->
 
   <!-- Image -->
-  <article class="message is-success">
-    <div class="message-body">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>
+  <a name="Toptag"></a>
+  <article class="message is-success is text">
+    <div class="message-body has-text-centered">  
+      Hello 👋 <br>
+       <strong>⚔️⚔️⚔️Challenge your peers⚔️⚔️⚔️</strong>
     </div>
   </article>
   <section class="hero has-text-centered is-size-1 has-background-success-light ">
     <div class="hero-body">
-      <p class="title is-size-1 is-uppercase is-family-primary  ">
+      <p class="title is-size-1 is-capitilized is-family-primary  ">
         Welcome to Codefi-42
       </p>
       <p class="subtitle is-size-4 is-family-primary ">
@@ -121,45 +124,86 @@
 <p id="demo"></p>
 
 <script>
-// Set the date we're counting down to
-var countDownDate = new Date("Oct 29, 2022 22:37:25").getTime();
-
-// Update the count down every 1 second
-var x = setInterval(function() {
-
-  // Get today's date and time
-  var now = new Date().getTime();
-
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
-
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  // Display the result in the element with id="demo"
-  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
-
-  // If the count down is finished, write some text
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("demo").innerHTML = "Time's Up";
+  var curday;
+  var secTime;
+  var ticker;
+  var flag = 1;
+   
+  function getweek() {
+    var nowDate = new Date();
+    var dy = 6 ; //Sunday through Saturday, 0 to 6
+    var countertime = new Date(nowDate.getFullYear(),nowDate.getMonth(),nowDate.getDate(),24,0,0); //20 out of 24 hours = 8pm
+    
+    var curtime = nowDate.getTime(); //current time
+    var atime = countertime.getTime(); //countdown time
+    var diff = parseInt((atime - curtime)/1000);
+    if (diff > 0) { curday = dy - nowDate.getDay() }
+    else { curday = dy - nowDate.getDay() -1 } //after countdown time
+    if (curday < 0) { curday += 7; } //already after countdown time, switch to next week
+    if (diff <= 0) { diff += (86400 * 7) }
+    startTimer (diff);
   }
-}, 1000);
-</script>
+  
+  function gethour() {
+    var nowDate = new Date();
+    var dy = 0; //Sunday through Saturday, 0 to 6
+    var countertime = new Date(nowDate.getFullYear(),nowDate.getMonth(),nowDate.getDate(),0,1,0); //20 out of 24 hours = 8pm
+    
+    var curtime = nowDate.getTime(); //current time
+    var atime = countertime.getTime(); //countdown time
+    var diff = parseInt((atime - curtime)/1000);
+    if (diff > 0) { curday = dy - nowDate.getDay() }
+    else { curday = dy - nowDate.getDay() -1 } //after countdown time
+    if (curday < 0) { curday += 7; } //already after countdown time, switch to next week
+    if (diff <= 0) { diff += (86400 * 7) }
+    startTimer (diff);
+  }
+   
+  function startTimer(secs) {
+   secTime = parseInt(secs);
+   ticker = setInterval("tick()",1000);
+   tick(); //initial count display
+  }
+   
+  function tick() {
+    var secs = secTime;
+    if (secs>0) {
+      secTime--;
+    }
+    else {
+      clearInterval(ticker);
+      flag = !flag;
+      if (flag)
+        getweek(); //start over
+      else
+        gethour();
+    }
+    
+    var days = Math.floor(secs/86400);
+    secs %= 86400;
+    var hours= Math.floor(secs/3600);
+    secs %= 3600;
+    var mins = Math.floor(secs/60);
+    secs %= 60;
+   
+    //update the time display
+    document.getElementById("demo").innerHTML = curday + "d " + hours + "h "
+    + mins + "m " + secs + "s ";
+  }
+  gethour();
+  </script>
+
 <div class="buttons is-centered">
-    <button class="button is-large is-danger ">Start Challenge!</button>
-  </div>
+  <a href="https://www.codewars.com/kata/57036f007fd72e3b77000023" class= "button is-large is-danger " target="_blank" id="start_button">Start Challenge!</a>
+</div>
 <!--  If the count down is finished, write some text ----------------------------------------------------------------------------------->
-    </div>
-  </section>
-  <section class="section has-text-centered is-centered is-size-4 backg">
-    <h1 class="title">Weekly Leadboard</h1>
-    <div class="column is-half is-offset-3 mr-6">
-      <table class="table is-fullwidth is-centered has-text-left">
+  </div>
+</section>
+<section class="section has-text-centered is-centered is-size-4 ">
+  <a name="weeklytag"></a>
+  <h1 class="title">Weekly Leadboard</h1>
+  <div class="column is-half is-offset-3 mr-6">
+    <table class="table is-fullwidth is-centered has-text-centered">
         <thead>
           <tr>
             <th><abbr title="User">User</abbr></th>
@@ -167,18 +211,13 @@ var x = setInterval(function() {
             <th><abbr title="Score">Score</abbr></th>
           </tr>
         </thead>
-        <tfoot>
-          <tr>
-            <th><abbr title="Position">Pos</abbr></th>
-            <th><abbr title="Name">Name</abbr></th>
-            <th><abbr title="Score">Score</abbr></th>
-          </tr>
-        </tfoot>
         <tbody>
 			<% for (var i = 0; i < list.length;  i++) { %>
 				<tr>
+          <td>
+            <img class="img_round" src="<%= list[i].pic_url %>"" width="60" height="100">
+          </td>
 				  <td><%= list[i].username %></td>
-				  <td><%= list[i].name %></td>
 				  <td><%= list[i].score %></td>
 				</tr>    
 			<% } %>
@@ -218,41 +257,6 @@ var x = setInterval(function() {
         </tbody>
       </table>
     </div>
-
-
-
-
-
-  <!-- newsletter -->
-  <section class="section">
-    <div class="columns">
-      <div class="column is-10 is-offset-1">
-        <div class="container has-text-centered is-fluid">
-          <div class="hero is-light">
-            <div class="hero-body">
-              <h2 class="title is-4">Sign up for our newsletter</h2>
-                <div class="column is-6 is-offset-3">
-                  <div class="field has-addons has-addons-centered">
-                    <div class="control is-expanded">
-                      <input class="input " type="text" placeholder="Email address">
-                    </div>
-                    <div class="control">
-                      <a class="button is-info">
-                        Subscribe
-                      </a>
-                    </div>
-                  </div>
-                </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-        <div class="is-divider"></div>
-      </div>
-    </div>
-  </section>
 
   <footer class="footer">
     <div class="content has-text-centered">
